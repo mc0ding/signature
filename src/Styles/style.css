@@ -1,7 +1,10 @@
+.wrap {
+  width: 100%;
+  height: 100%;
+}
 .container {
-  width: 500px;
-  height: 500px;
-  border: 3px solid #000;
+  width: 100%;
+  height: 80%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -11,6 +14,7 @@
 .canvasContainer {
   width: 70%;
   height: 70%;
+  border: 1px solid #000;
 }
 
 .canvasStyle {
@@ -18,11 +22,117 @@
   height: 100%;
 }
 
-button {
+.title {
+  padding-left: 3rem;
+}
+
+.btn-flex {
+  display: flex;
+}
+
+.modal-btn {
   display: flex;
   margin-top: 20px;
-  width: 80px;
-  height: 30px;
+  margin-left: 20px;
+  width: 10rem;
+  height: 5rem;
+  font-size: 1.5rem;
   justify-content: center;
   align-items: center;
+}
+
+.fn-btn {
+  margin: 10px;
+  width: 5rem;
+  height: 2rem;
+  font-size: 1rem;
+  justify-content: center;
+  align-items: center;
+}
+
+#header{
+  position: absolute;
+  top: 50px;
+  left: 50%;
+  z-index: 998;
+  color: white;
+  text-align: center;
+  transform: translate(-50%, -50%);
+}
+
+#header > p {
+  font-size: 0.9em;
+}
+
+#camera, #camera--view, #camera--sensor, #camera--output{
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+#camera--view, #camera--sensor, #camera--output{
+  transform: scaleX(-1);
+  filter: FlipH;
+}
+
+#camera--trigger{
+  width: 180px;
+  color: white;
+  background-color: black;
+  font-size: 16px;
+  border-radius: 30px;
+  border: none;
+  padding: 15px 20px;
+  text-align: center;
+  box-shadow: 0 5px 10px 0 rgba(0,0,0,0, 0.2);
+  position: fixed;
+  bottom: 30px;
+  left: calc(50% - 90px);
+}
+
+.taken {
+  height: 140px!important;
+  width: 220px!important;
+  border: solid 2px rgb(121, 200, 253);
+}
+
+.modal-container {
+  /* 모달창 크기 */
+  width: 24rem;
+  height: 50%;
+
+  /* 최상단 위치 */
+  z-index: 998;
+  
+  /* 중앙 배치 */
+  /* top, bottom, left, right 는 브라우저 기준으로 작동한다. */
+  /* translate는 본인의 크기 기준으로 작동한다. */
+  position: absolute;
+  top: 30%;
+  left: 30%;
+  transform: translate(-30%, -30%);
+
+  /* 모달창 디자인 */
+  background-color: gray;
+  border: 0.5px solid black;
+  border-radius: 8px;
+}
+
+/* 모달창 내부 X버튼 */
+.close {
+  position: fixed;
+  z-index: 998;
+  width: 3rem;
+  right: 0px;
+  font-size: large;
+}
+
+a {
+  z-index: 999;
+}
+
+.img-list {
+  margin-top: 10px;
+  margin-left: 10px;
 }
