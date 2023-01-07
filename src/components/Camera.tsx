@@ -28,12 +28,14 @@ export default function Camera({setCamOpen, imgList, setImgList}: Props) {
   useEffect(() => {
     navigator.mediaDevices.getUserMedia(constraints)
       .then(function(stream){
+        // eslint-disable-next-line
         const track = stream.getTracks()[0];
         if (viewRef !== null && viewRef.current !== null) { viewRef.current.srcObject = stream; }
       })
       .catch(function(error){
         console.error("카메라에 문제가 있습니다.", error);
       })
+  // eslint-disable-next-line
   }, []);
 
   //촬영 버튼 클릭 리스너
