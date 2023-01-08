@@ -23,7 +23,7 @@ export default function Camera({setCamOpen, imgList, setImgList}: Props) {
   const outputRef = useRef<HTMLImageElement>(null);
   const sensorRef = useRef<HTMLCanvasElement>(null);
   const triggerRef =useRef<HTMLButtonElement>(null);
-  let constraints = { video: { facingMode: "user"}, audio: false};
+  let constraints = { video: { facingMode: { exact: "environment" } }, audio: false};
   
   useEffect(() => {
     navigator.mediaDevices.getUserMedia(constraints)
