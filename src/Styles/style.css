@@ -11,6 +11,10 @@
   align-items: center;
 }
 
+.position-relative {
+  position: relative;
+}
+
 .canvasContainer {
   width: 70%;
   height: 70%;
@@ -32,11 +36,10 @@
 
 .modal-btn {
   display: flex;
-  margin-top: 20px;
-  margin-left: 20px;
-  width: 10rem;
-  height: 5rem;
-  font-size: 1.5rem;
+  margin: 20px auto;
+  width: 8rem;
+  height: 4rem;
+  font-size: 1rem;
   justify-content: center;
   align-items: center;
 }
@@ -132,7 +135,29 @@ a {
   z-index: 999;
 }
 
+.map-img {
+  width: 400px;
+  height: 280px;
+}
+
+.check-point {
+  position: absolute;
+  white-space: pre-wrap;
+  border: red solid 7px;
+  border-radius: 100px;
+  width: 70px;
+  height: 70px;
+  background-color: transparent;
+}
+.check-point:hover {
+  cursor: default;
+}
+
 .img-list {
   margin-top: 10px;
   margin-left: 10px;
+}
+
+.position-absolute {
+  position: absolute;
 }

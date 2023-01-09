@@ -4,9 +4,11 @@ import '../Styles/style.css';
 
 interface Props {
   setSignOpen: React.Dispatch<SetStateAction<boolean>>;
+  signList: string[];
+  setSignList: React.Dispatch<SetStateAction<string[]>>;
 }
 
-export default function Signature({ setSignOpen }: Props) {
+export default function Signature({ setSignOpen, signList, setSignList }: Props) {
   const signCanvas = useRef() as React.MutableRefObject<any>;
   const clear = () => {
     signCanvas.current.clear();
@@ -15,8 +17,9 @@ export default function Signature({ setSignOpen }: Props) {
     const image = signCanvas.current.getTrimmedCanvas().toDataURL('image/png');
     const link = document.createElement('a');
     link.href = image;
-    link.download = 'sign_image.png';
-    link.click();
+    setSignList([...signList, link.href])
+    // link.download = 'sign_image.png';
+    // link.click();
   };
   const closeModal = () => {
     setSignOpen(false);
