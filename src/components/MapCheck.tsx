@@ -13,17 +13,26 @@ interface Coordinate {
 }
 
 export default function MapCheck({ setMapOpen, coordiList, setCoordiList }: Props) {
+  let mapTop = 0;
+  let mapLeft = 0;
   const mapRef = useRef<HTMLImageElement>(null);
   const [coordi, setCoordi] = useState<Coordinate>({
     coordinateX: 0,
     coordinateY: 0,
   });
+  useEffect(() => {
+    if (mapRef && mapRef.current) {
+      // eslint-disable-next-line
+      mapTop = mapRef.current.getBoundingClientRect().top
+      // eslint-disable-next-line
+      mapLeft = mapRef.current.getBoundingClientRect().left
+    }
+  }, [coordi])
   const clickHandler = (e: any) => {
-    console.log(e.clientX, e.clientY)
-    // 클릭한 좌표 구하기 = 지도 맨 왼쪽 상단 부분을 클릭한 좌표(offsetTop,Left로 구하는 방법 확인하기)에 원 크기의 반 값을 더한 뒤, 클릭한 좌표에서 빼준다.
-    setCoordi({ coordinateX: e.clientX-48, coordinateY: e.clientY-248 })
+    // 클릭한 좌표 구하기 = 지도 div의 상단,왼쪽끝 좌표(mapTop, mapLeft)와 원 크기(input의 width, height)반 값을 클릭한 좌표에서 빼준다.
+    setCoordi({ coordinateX: e.clientX - mapLeft - 50, coordinateY: e.clientY - mapTop - 30 })
   };
-  const clear = () => { setCoordi({ coordinateX: 0, coordinateY: 0 })};
+  const clear = () => { setCoordi({ coordinateX: 0, coordinateY: 0 }) };
   const save = () => { setCoordiList([...coordiList, coordi]) }
 
   const closeModal = () => {
@@ -56,13 +65,13 @@ export default function MapCheck({ setMapOpen, coordiList, setCoordiList }: Prop
         <h1 className='title'> 지도 체크 </h1>
         <div className='container position-relative'>
           <img className='map-img position-absolute' src={img} alt='treasure' ref={mapRef} onClick={clickHandler} />
-          { coordi.coordinateX !== 0 && coordi.coordinateY !== 0
+          {coordi.coordinateX !== 0 && coordi.coordinateY !== 0
             ? <input style={{ left: coordi.coordinateX, top: coordi.coordinateY }} disabled className='check-point' onClick={clickHandler} />
             : null
           }
-          { coordiList
-          ? coordiList.map((coordi) => <input style={{ left: coordi.coordinateX, top: coordi.coordinateY, border: 'blue solid 5px' }} disabled className='check-point' />)
-          : null }
+          {coordiList
+            ? coordiList.map((coordi) => <input style={{ left: coordi.coordinateX, top: coordi.coordinateY, border: 'blue solid 5px' }} disabled className='check-point' />)
+            : null}
           <div className='btn-flex position-absolute' style={{ translate: '0 150px' }}>
             <button className='fn-btn' onClick={clear}>clear</button>
             <button className='fn-btn' onClick={save}>save</button>
